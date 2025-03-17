@@ -17,10 +17,14 @@
 
 1. **Клонируй репозиторий:**
    ```sh
-   git clone https://github.com/твоя_ссылка/nuke.git
+   git clone https://github.com/Nouname822/nuke.git
    cd nuke
    ```
-2. **Поднятие и запуск через Docker Compose:**
+2. **Установка php зависимостей:**
+   ```sh
+   composer install
+   ```
+3. **Поднятие и запуск через Docker Compose:**
    ```sh
    docker compose up -d
    ```
