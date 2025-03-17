@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+require_once './vendor/autoload.php';
+
+use Bin\App\Core\Kernel;
+
+$app = new Kernel();
+$app->run($argv);

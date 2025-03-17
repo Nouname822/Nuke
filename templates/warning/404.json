@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 404,
+    "code_message": "Ресурс не найден",
+    "message": "{{ message }}"
+}

@@ -1,0 +1,6 @@
+{
+    "status": "move",
+    "code": 302,
+    "code_message": "Ресурс временно перемещен",
+    "message": "{{ message }}"
+}

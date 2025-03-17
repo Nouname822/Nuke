@@ -1,0 +1,6 @@
+{
+    "status": "error",
+    "code": 501,
+    "code_message": "Не реализовано, функция недоступна",
+    "message": "{{ message }}"
+}

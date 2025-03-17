@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 409,
+    "code_message": "Конфликт, ресурс уже существует",
+    "message": "{{ message }}"
+}

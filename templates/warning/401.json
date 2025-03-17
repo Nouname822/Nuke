@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 401,
+    "code_message": "Несанкционированный, требуется аутентификация",
+    "message": "{{ message }}"
+}

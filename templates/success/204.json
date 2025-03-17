@@ -1,0 +1,6 @@
+{
+    "status": "success",
+    "code": "204",
+    "code_message": "Нет контента",
+    "message": "{{ message }}"
+}

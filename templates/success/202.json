@@ -1,0 +1,6 @@
+{
+    "status": "success",
+    "code": "202",
+    "code_message": "Запрос принят, идет обработка",
+    "message": "{{ message }}"
+}

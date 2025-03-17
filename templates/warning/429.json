@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 429,
+    "code_message": "Слишком много запросов, сбавьте скорость",
+    "message": "{{ message }}"
+}

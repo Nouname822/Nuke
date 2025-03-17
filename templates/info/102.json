@@ -1,0 +1,6 @@
+{
+    "status": "info",
+    "code": 102,
+    "code_message": "Обработка: запрос обрабатывается, подождите",
+    "message": "{{ message }}"
+}

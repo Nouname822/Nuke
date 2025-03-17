@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 405,
+    "code_message": "Неправильный метод запроса",
+    "message": "{{ message }}"
+}

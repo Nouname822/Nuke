@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 403,
+    "code_message": "Запрещено, у вас нет разрешения",
+    "message": "{{ message }}"
+}

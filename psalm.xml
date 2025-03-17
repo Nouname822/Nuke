@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<psalm 
+    level="1"
+    errorLevel="1"
+    resolveFromConfigFile="true"
+    allowStringToStandInForClass="true"
+    allowStringToStandInForMethod="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    findUnusedBaselineEntry="true"
+    findUnusedCode="true"
+>
+    <issueHandlers>
+        <UnresolvableInclude errorLevel="suppress" />
+    </issueHandlers>
+    <projectFiles>
+        <directory name="src" />
+        <directory name="app" />
+        <directory name="bin" />
+        <directory name="common" />
+        <directory name="config" />
+        <directory name="modules" />
+        <directory name="public" />
+        <directory name="schema" />
+        <directory name="storage" />
+        <directory name="tests" />
+        <directory name="web" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
+    </projectFiles>
+</psalm>

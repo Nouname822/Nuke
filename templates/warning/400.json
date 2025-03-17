@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 400,
+    "code_message": "Неверный запрос, проверьте входные данные",
+    "message": "{{ message }}"
+}

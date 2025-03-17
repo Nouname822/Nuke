@@ -1,0 +1,17 @@
+client_host: "http://localhost:3000"
+
+logs:
+  path: "@/storage/log"
+  fronts:
+    server: "server.log"
+    database: "database.log"
+    redis: "redis.log"
+
+routing:
+  root_file_path: "@/web/routes.php"
+  cache_file_path: "@/storage/var/routes.php"
+
+redis:
+  scheme: "tcp"
+  host: "nuke_redis"
+  port: 6379

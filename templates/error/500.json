@@ -1,0 +1,6 @@
+{
+    "status": "error",
+    "code": 500,
+    "code_message": "Внутренняя ошибка сервера, что-то пошло не так",
+    "message": "{{ message }}"
+}

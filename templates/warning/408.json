@@ -1,0 +1,6 @@
+{
+    "status": "warning",
+    "code": 408,
+    "code_message": "Тайм-аут, повторите попытку позже",
+    "message": "{{ message }}"
+}

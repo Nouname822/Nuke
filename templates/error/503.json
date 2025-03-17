@@ -1,0 +1,6 @@
+{
+    "status": "error",
+    "code": 503,
+    "code_message": "Сервис недоступен, сервер перегружен",
+    "message": "{{ message }}"
+}
