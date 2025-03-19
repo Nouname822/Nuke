@@ -18,7 +18,7 @@ use Common\Helpers\Functions;
 
 abstract class AbstractModel extends Adapter
 {
-    protected string $table;
+    public string $table;
 
     public function __construct()
     {
@@ -60,6 +60,18 @@ abstract class AbstractModel extends Adapter
     {
         return static::insert($this->table, $data, $getId);
     }
+
+    /**
+     * Массовая вставка данных в таблицу
+     *
+     * @param array<int, array<string, mixed>> $data
+     * @return array
+     */
+    public function bulkInsert(array $data): array
+    {
+        return $this->insertMultiple($this->table, $data);
+    }
+
 
 
 
@@ -195,15 +207,21 @@ abstract class AbstractModel extends Adapter
     /**
      * Для получение данных по ids
      *
-     * @param array<int> $ids
+     * @param ?array<int> $ids
      * @param array<string> $fields
      * @param boolean $isStrong
      * @return array
      */
-    public function findByIds(array $ids, array $fields, bool $isStrong = true): array
+    public function findByIds(?array $ids = null, ?array $fields = ['*'], ?int $limit = null, bool $isStrong = true): array
     {
-        $conditions = static::getConditionsByIds($ids);
-        return $this->select($this->table, $fields)->where($conditions, static::getStrong($isStrong))->get();
+        if ($ids) {
+            $conditions = static::getConditionsByIds($ids);
+            return $this->select($this->table, $fields)->where($conditions, static::getStrong($isStrong))->get();
+        }
+        if ($limit) {
+            return $this->select($this->table, $fields)->limit($limit)->get();
+        }
+        return $this->select($this->table, $fields)->get();
     }
 
     /**
@@ -221,16 +239,19 @@ abstract class AbstractModel extends Adapter
     }
 
     /**
-     * Для получение всех данных с таблицы бнз лимита используя условие
+     * Для получение всех данных с таблицы без лимита используя условие
      *
-     * @param array<array-key, array<string, string>> $conditions [['id', '=', 1], ['id', '&', 1], ['id', '<', 1]]
+     * @param ?array<array-key, array<string, string>> $conditions [['id', '=', 1], ['id', '&', 1], ['id', '<', 1]]
      * @param array<string> $fields ['name', 'id', 'age', 'created_at']
      * @param boolean $isStrong true/false AND/OR
      * @return array
      */
-    public function all(array $conditions, array $fields = ['*'], bool $isStrong = true): array
+    public function all(?array $conditions = null, array $fields = ['*'], bool $isStrong = true): array
     {
-        return $this->select($this->table, $fields)->where($conditions, static::getStrong($isStrong))->get();
+        if ($conditions) {
+            return $this->select($this->table, $fields)->where($conditions, static::getStrong($isStrong))->get();
+        }
+        return $this->select($this->table, $fields)->get();
     }
 
     /**
@@ -260,11 +281,12 @@ abstract class AbstractModel extends Adapter
      *
      * @param class-string $relatedModel Связанный класс модели (например, App\Models\Profile)
      * @param string $foreignKey Внешний ключ в связанной таблице (например, user_id)
-     * @param string $localKey Локальный ключ в текущей таблице (обычно id)
+     * @param int|string $id по которому будут находить связь
      * @return array|null
      */
-    public function hasOne(string $relatedModel, string $foreignKey, string $localKey = 'id'): ?array
+    public function hasOne(string $relatedModel, string $foreignKey, int|string $id): ?array
     {
+        /** @psalm-suppress MixedMethodCall */
         $relatedInstance = new $relatedModel();
         if (!$relatedInstance instanceof self) {
             throw new \InvalidArgumentException("{$relatedModel} должен быть экземпляром " . self::class);
@@ -273,7 +295,7 @@ abstract class AbstractModel extends Adapter
         $relatedTable = $relatedInstance->table;
 
         return $this->select($relatedTable)
-            ->where([[$foreignKey, '=', (int) $this->$localKey]])
+            ->where([[$foreignKey, '=', (string)$id]])
             ->limit(1)
             ->get();
     }
@@ -283,11 +305,12 @@ abstract class AbstractModel extends Adapter
      *
      * @param class-string $relatedModel Связанный класс модели
      * @param string $foreignKey Внешний ключ в связанной таблице
-     * @param string $localKey Локальный ключ (обычно id)
+     * @param int|string $id ID текущей модели, по которому искать связь
      * @return array
      */
-    public function hasMany(string $relatedModel, string $foreignKey, string $localKey = 'id'): array
+    public function hasMany(string $relatedModel, string $foreignKey, int|string $id): array
     {
+        /** @psalm-suppress MixedMethodCall */
         $relatedInstance = new $relatedModel();
         if (!$relatedInstance instanceof self) {
             throw new \InvalidArgumentException("{$relatedModel} должен быть экземпляром " . self::class);
@@ -296,7 +319,7 @@ abstract class AbstractModel extends Adapter
         $relatedTable = $relatedInstance->table;
 
         return $this->select($relatedTable)
-            ->where([[$foreignKey, '=', (int) $this->$localKey]])
+            ->where([[$foreignKey, '=', (string) $id]])
             ->get();
     }
 
@@ -307,7 +330,7 @@ abstract class AbstractModel extends Adapter
      * @param string $pivotTable Промежуточная таблица (например, user_roles)
      * @param string $foreignPivotKey Внешний ключ текущей модели в pivot таблице
      * @param string $relatedPivotKey Внешний ключ связанной модели в pivot таблице
-     * @param string $localKey Локальный ключ в текущей таблице
+     * @param int|string $id ID текущей модели, по которому искать связь
      * @param string $relatedKey Ключ в связанной таблице (обычно id)
      * @return array
      */
@@ -316,9 +339,10 @@ abstract class AbstractModel extends Adapter
         string $pivotTable,
         string $foreignPivotKey,
         string $relatedPivotKey,
-        string $localKey = 'id',
+        int|string $id,
         string $relatedKey = 'id'
     ): array {
+        /** @psalm-suppress MixedMethodCall */
         $relatedInstance = new $relatedModel();
         if (!$relatedInstance instanceof self) {
             throw new \InvalidArgumentException("{$relatedModel} должен быть экземпляром " . self::class);
@@ -328,7 +352,7 @@ abstract class AbstractModel extends Adapter
 
         return $this->select("{$relatedTable}.*")
             ->join($pivotTable, "{$pivotTable}.{$relatedPivotKey}", "=", "{$relatedTable}.{$relatedKey}")
-            ->where([["{$pivotTable}.{$foreignPivotKey}", '=', (int) $this->$localKey]])
+            ->where([["{$pivotTable}.{$foreignPivotKey}", '=', (string) $id]])
             ->get();
     }
 }

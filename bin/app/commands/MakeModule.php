@@ -36,6 +36,10 @@ class MakeModule extends BaseCommand
             'title' => 'Middleware',
             'prefix' => 'Middleware'
         ],
+        'Services' => [
+            'title' => 'Сервис',
+            'prefix' => 'Service'
+        ],
         'Models' => [
             'title' => 'Модель',
             'prefix' => ''
@@ -64,32 +68,42 @@ class MakeModule extends BaseCommand
             mkdir($fullPath . '/' . $fileName, 0777, true);
 
             $this->createFromTpl('module/' . $fileName . '.tpl', $fullPath . '/' . $fileName . '/' . $name . $param['prefix'] . '.php', [
-                'name' => $name . $param['prefix'],
-                'module_name' => $name
+                'name' => ucfirst(strtolower($name)) . $param['prefix'],
+                'module_name' => ucfirst(strtolower($name))
             ], function () use ($param) {
                 $this->write($param['title'] . ' успешно создан!', 'green');
             });
         }
 
-        $this->createFromTpl('module/require.tpl', $fullPath . '/require.php', [
-            'module_name' => $name,
-            'time' => (new DateTimeImmutable())->format('Y-m-d H:m:i')
-        ], function () {
-            $this->write('Файл зависимостей успешно создано!', 'green');
-        });
-
         $this->createFromTpl('module/settings.tpl', $fullPath . '/settings.php', [
-            'module_name' => $name,
+            'module_name' => ucfirst(strtolower($name)),
             'time' => (new DateTimeImmutable())->format('Y-m-d H:m:i')
         ], function () {
             $this->write('Файл настроек успешно создано!', 'green');
         });
 
-        $this->createFromTpl('module/routes.tpl', $fullPath . '/routes.php', [], function () {
+        $this->createFromTpl('module/routes.tpl', $fullPath . '/routes.php', [
+            'module_name' => ucfirst(strtolower($name))
+        ], function () {
             $this->write('Файл с маршрутами успешно создано!', 'green');
         });
 
-        touch($fullPath . '/.gitignore');
+        $this->createFromTpl('module/composer/composer.tpl', $fullPath . '/composer.json', [
+            'name' => strtolower($name),
+            'namespace' => ucfirst(strtolower($name))
+        ], function () {
+            $this->write('Файл composer.json успешно создано!', 'green');
+        });
+
+        $this->createFromTpl('module/composer/gitignore.tpl', $fullPath . '/.gitignore', [], function () {
+            $this->write('Файл .gitignore успешно создано!', 'green');
+        });
+
+        $this->createFromTpl('module/composer/license.tpl', $fullPath . '/LICENSE', [], function () {
+            $this->write('Лицензия успешно создано!', 'green');
+        });
+
+        exec('composer update --working-dir=modules/' . ucfirst(strtolower($name)));
 
         $this->end();
     }

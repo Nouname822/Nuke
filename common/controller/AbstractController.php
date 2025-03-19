@@ -4,6 +4,11 @@ namespace Common\Controller;
 
 abstract class AbstractController
 {
+    protected static function isValidId(string $id): bool
+    {
+        return ctype_digit($id) && $id >= '0';
+    }
+
     /**
      * Для отправки запроса через CURL например для удобной работы с внешним API
      *

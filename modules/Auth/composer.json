@@ -1,0 +1,28 @@
+{
+    "name": "nuke/auth",
+    "description": "",
+    "type": "library",
+    "require": {
+        "firebase/php-jwt": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Auth\\Controllers\\": "Controllers/",
+            "Auth\\Dto\\": "Dto/",
+            "Auth\\Enums\\": "Enums/",
+            "Auth\\Interfaces\\": "Interfaces/",
+            "Auth\\Middlewares\\": "Middlewares/",
+            "Auth\\Services\\": "Services/",
+            "Auth\\Models\\": "Models/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nouname822",
+            "email": "Nouname822@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

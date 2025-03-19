@@ -35,12 +35,6 @@ class MakeMigration extends BaseCommand
             $this->write('Миграция успешно создано!', 'green');
         });
 
-        $isCreateModel = $this->ask('Создать еще модель?', 'yes');
-
-        if ($isCreateModel === "yes" || $isCreateModel === "ye" || $isCreateModel === "y") {
-            (new MakeModel())->execute([$name]);
-            exit;
-        }
         $this->end();
     }
 }

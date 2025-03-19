@@ -1,14 +1,13 @@
 <?php
 
-namespace Modules\{{ module_name }}\Controllers;
+namespace {{ module_name }}\Controllers;
 
 use Common\Controller\AbstractController;
 use Common\Helpers\JsonResponse;
 use Common\Helpers\Response;
-use Common\Types\Interfaces\CRUD;
 
 /** @psalm-suppress UnusedClass */
-class {{ name }} extends AbstractController implements CRUD
+class {{ name }} extends AbstractController
 {
     public function add(): JsonResponse
     {

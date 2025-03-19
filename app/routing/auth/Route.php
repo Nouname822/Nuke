@@ -52,25 +52,31 @@ class Route
         ];
     }
 
-    public static function get(string $path, array|callable $action): self
+    public static function get(string $path, array $action): self
     {
         static::schema('GET', $path, $action, static::$groupConfig);
         return new self();
     }
 
-    public static function post(string $path, array|callable $action): self
+    public static function post(string $path, array $action): self
     {
         static::schema('POST', $path, $action, static::$groupConfig);
         return new self();
     }
 
-    public static function put(string $path, array|callable $action): self
+    public static function head(string $path, array $action): self
+    {
+        static::schema('HEAD', $path, $action, static::$groupConfig);
+        return new self();
+    }
+
+    public static function put(string $path, array $action): self
     {
         static::schema('PUT', $path, $action, static::$groupConfig);
         return new self();
     }
 
-    public static function delete(string $path, array|callable $action): self
+    public static function delete(string $path, array $action): self
     {
         static::schema('DELETE', $path, $action, static::$groupConfig);
         return new self();

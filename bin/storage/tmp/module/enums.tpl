@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\{{ module_name }}\Enums;
+namespace {{ module_name }}\Enums;
 
 enum {{ name }}: string
 {

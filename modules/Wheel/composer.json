@@ -1,0 +1,26 @@
+{
+    "name": "nuke/wheel",
+    "description": "",
+    "type": "library",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Wheel\\Controllers\\": "Controllers/",
+            "Wheel\\Dto\\": "Dto/",
+            "Wheel\\Enums\\": "Enums/",
+            "Wheel\\Interfaces\\": "Interfaces/",
+            "Wheel\\Middlewares\\": "Middlewares/",
+            "Wheel\\Services\\": "Services/",
+            "Wheel\\Models\\": "Models/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nouname822",
+            "email": "Nouname822@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

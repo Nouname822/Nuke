@@ -288,6 +288,38 @@ abstract class Adapter
         }
     }
 
+    /**
+     * Массовая вставка данных в таблицу
+     *
+     * @param string $table Название таблицы
+     * @param array<int, array<string, mixed>> $data Данные для вставки
+     * @return array
+     */
+    public function insertMultiple(string $table, array $data): array
+    {
+        if (empty($data)) {
+            return [
+                'code' => 400,
+                'message' => 'Введите данные!'
+            ];
+        }
+
+        $columns = array_keys($data[0]);
+        $placeholders = '(' . implode(',', array_fill(0, count($columns), '?')) . ')';
+        $values = [];
+        $params = [];
+
+        foreach ($data as $row) {
+            $params = array_merge($params, array_values($row));
+            $values[] = $placeholders;
+        }
+
+        $sql = "INSERT INTO $table (" . implode(',', $columns) . ") VALUES " . implode(',', $values);
+
+        return $this->sql($sql, $params);
+    }
+
+
 
 
 
@@ -632,8 +664,8 @@ abstract class Adapter
      * @param string $table Название таблицы
      * @param string $jsonField JSON-поле
      * @param string $key Ключ внутри JSON
-     * @param array<string, mixed> $conditions Условия выборки
-     * @return array<int, mixed>
+     * @param array<array-key, array<array-key, string>> $conditions Условия выборки
+     * @return array
      */
     public static function jsonExtract(string $table, string $jsonField, string $key, array $conditions = []): array
     {
@@ -650,8 +682,8 @@ abstract class Adapter
      * @param string $table Название таблицы
      * @param string $field Название столбца
      * @param int $amount Величина увеличения
-     * @param array<string, mixed> $conditions Условия обновления
-     * @return array<int, mixed>
+     * @param array<array-key, array<array-key, string>> $conditions Условия обновления
+     * @return array
      */
     public static function increment(string $table, string $field, int $amount, array $conditions): array
     {
@@ -667,7 +699,7 @@ abstract class Adapter
      * @param string $table
      * @param string $field
      * @param integer $amount
-     * @param array $conditions
+     * @param array<array-key, array<array-key, string>> $conditions
      * @return array
      */
     public static function decrement(string $table, string $field, int $amount, array $conditions): array

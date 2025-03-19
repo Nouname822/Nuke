@@ -1,0 +1,26 @@
+{
+    "name": "nuke/cms",
+    "description": "",
+    "type": "library",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Cms\\Controllers\\": "Controllers/",
+            "Cms\\Dto\\": "Dto/",
+            "Cms\\Enums\\": "Enums/",
+            "Cms\\Interfaces\\": "Interfaces/",
+            "Cms\\Middlewares\\": "Middlewares/",
+            "Cms\\Services\\": "Services/",
+            "Cms\\Models\\": "Models/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nouname822",
+            "email": "Nouname822@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

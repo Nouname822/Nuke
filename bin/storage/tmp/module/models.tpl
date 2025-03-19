@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\{{ module_name }}\Models;
+namespace {{ module_name }}\Models;
 
 use App\Database\Model\AbstractModel;
 

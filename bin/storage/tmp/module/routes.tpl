@@ -1,14 +1,11 @@
 <?php
 
+use Common\Helpers\Functions;
 use App\Routing\Auth\Route;
-use Modules\Auth\Controllers\AuthController;
+
+require_once Functions::root('@/modules/{{ module_name }}/vendor/autoload.php');
 
 Route::register(function () {
     Route::group('api', '/api/', [], function () {
-        Route::group('admin', 'admin/', [], function () {
-            Route::group('auth', 'auth/', [], function () {
-                Route::get('register', [AuthController::class, 'login']);
-            });
-        });
     });
 });

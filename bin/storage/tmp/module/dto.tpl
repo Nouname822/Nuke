@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\{{ module_name }}\Dto;
+namespace {{ module_name }}\Dto;
 
 class {{ name }}
 {

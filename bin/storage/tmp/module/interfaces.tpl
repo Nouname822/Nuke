@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\{{ module_name }}\Interfaces;
+namespace {{ module_name }}\Interfaces;
 
 interface {{ name }}
 {

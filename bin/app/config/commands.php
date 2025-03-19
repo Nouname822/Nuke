@@ -1,21 +1,9 @@
 <?php
 
 return [
-    'make:controller' => [\Bin\App\Commands\MakeController::class, [
-        'description' => 'Команда для создание контроллера',
-        'use' => 'php artisan make:controller [name]',
-    ]],
     'make:migration' => [\Bin\App\Commands\MakeMigration::class, [
         'description' => 'Команда для создание миграции',
         'use' => 'php artisan make:migration [table_name]',
-    ]],
-    'make:model' => [\Bin\App\Commands\MakeModel::class, [
-        'description' => 'Команда для создание модели',
-        'use' => 'php artisan make:model [name]',
-    ]],
-    'make:middleware' => [\Bin\App\Commands\MakeMiddleware::class, [
-        'description' => 'Команда для создание middleware',
-        'use' => 'php artisan make:middleware [name]',
     ]],
 
 
@@ -27,29 +15,37 @@ return [
         'description' => 'Команда для создание модуля',
         'use' => 'php artisan make:module [name]',
     ]],
-    'make:module:controller' => [\Bin\App\Commands\MakeModuleController::class, [
+    'make:controller' => [\Bin\App\Commands\MakeModuleController::class, [
         'description' => 'Команда для создание контроллера внутри модуля',
-        'use' => 'php artisan make:module:controller [module_name] [name]',
+        'use' => 'php artisan make:controller [module_name] [name]',
     ]],
-    'make:module:dto' => [\Bin\App\Commands\MakeModuleDto::class, [
+    'make:dto' => [\Bin\App\Commands\MakeModuleDto::class, [
         'description' => 'Команда для создание DTO внутри модуля',
-        'use' => 'php artisan make:module:dto [module_name] [name]',
+        'use' => 'php artisan make:dto [module_name] [name]',
     ]],
-    'make:module:enum' => [\Bin\App\Commands\MakeModuleEnum::class, [
+    'make:enum' => [\Bin\App\Commands\MakeModuleEnum::class, [
         'description' => 'Команда для создание ENUM внутри модуля',
-        'use' => 'php artisan make:module:enum [module_name] [name]',
+        'use' => 'php artisan make:enum [module_name] [name]',
     ]],
-    'make:module:interface' => [\Bin\App\Commands\MakeModuleInterface::class, [
+    'make:interface' => [\Bin\App\Commands\MakeModuleInterface::class, [
         'description' => 'Команда для создание интерфейса внутри модуля',
-        'use' => 'php artisan make:module:interface [module_name] [name]',
+        'use' => 'php artisan make:interface [module_name] [name]',
     ]],
-    'make:module:middleware' => [\Bin\App\Commands\MakeModuleMiddleware::class, [
+    'make:middleware' => [\Bin\App\Commands\MakeModuleMiddleware::class, [
         'description' => 'Команда для создание middleware внутри модуля',
-        'use' => 'php artisan make:module:middleware [module_name] [name]',
+        'use' => 'php artisan make:middleware [module_name] [name]',
     ]],
-    'make:module:model' => [\Bin\App\Commands\MakeModuleModel::class, [
+    'make:model' => [\Bin\App\Commands\MakeModuleModel::class, [
         'description' => 'Команда для создание модели внутри модуля',
-        'use' => 'php artisan make:module:model [module_name] [name]',
+        'use' => 'php artisan make:model [module_name] [name]',
+    ]],
+    'make:service' => [\Bin\App\Commands\MakeModuleService::class, [
+        'description' => 'Команда для создание сервиса внутри модуля',
+        'use' => 'php artisan make:service [module_name] [name]',
+    ]],
+    'make:crud' => [\Bin\App\Commands\MakeCrud::class, [
+        'description' => 'Команда для создание CRUD сервиса внутри модуля',
+        'use' => 'php artisan make:crud [module_name] [name]',
     ]],
 
 
@@ -75,9 +71,9 @@ return [
 
 
 
-    'migration:migrate' => [\Bin\App\Commands\MigrationsMigrate::class, [
+    'migrate' => [\Bin\App\Commands\MigrationsMigrate::class, [
         'description' => 'Команда для наката и отката миграции',
-        'use' => 'php artisan migration:migrate ?[file_name] [method]',
+        'use' => 'php artisan migrate ?[file_name] [method]',
     ]],
     'cache:clear' => [\Bin\App\Commands\Cache::class, [
         'description' => 'Команда для очистки кэша',

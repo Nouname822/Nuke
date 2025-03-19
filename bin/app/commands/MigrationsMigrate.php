@@ -24,9 +24,6 @@ class MigrationsMigrate extends BaseCommand
      */
     public function run(array $arguments): void
     {
-        if (!is_string($arguments[0])) {
-            return;
-        }
         $filename = $arguments[0] ?? null;
         $action = $arguments[1] ?? 'up';
 

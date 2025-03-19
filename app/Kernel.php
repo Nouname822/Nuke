@@ -65,9 +65,9 @@ class Kernel
     /**
      * Для инициализации маршрутизации
      *
-     * @return JsonResponse
+     * @return JsonResponse|null
      */
-    private static function initRoute(): JsonResponse
+    private static function initRoute(): JsonResponse|null
     {
         /** 
          * @var array{

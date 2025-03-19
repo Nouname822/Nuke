@@ -18,6 +18,7 @@ use App\Cache\CacheService;
 use App\Errors\NotFound;
 use App\Services\Request;
 use App\Services\ExecClass;
+use Common\Helpers\Functions;
 use Common\Helpers\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 

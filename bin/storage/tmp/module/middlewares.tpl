@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\{{ module_name }}\middlewares;
+namespace {{ module_name }}\Middlewares;
 
 use App\Services\Request;
 use Common\Helpers\JsonResponse;

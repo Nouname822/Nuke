@@ -11,7 +11,7 @@ interface CRUD
      *
      * @return JsonResponse
      */
-    public function add(): JsonResponse;
+    public static function add(): JsonResponse;
 
     /**
      * Метод для удаление данных
@@ -19,7 +19,7 @@ interface CRUD
      * @param string $id
      * @return JsonResponse
      */
-    public function del(string $id): JsonResponse;
+    public static function del(string $id): JsonResponse;
 
     /**
      * Метод для обновление данных
@@ -27,7 +27,7 @@ interface CRUD
      * @param string $id
      * @return JsonResponse
      */
-    public function set(string $id): JsonResponse;
+    public static function set(string $id): JsonResponse;
 
     /**
      * Метод для получение данных
@@ -35,5 +35,13 @@ interface CRUD
      * @param string $id
      * @return JsonResponse
      */
-    public function get(string $id): JsonResponse;
+    public static function get(string $id): JsonResponse;
+
+    /**
+     * Метод для получение восстановление данных
+     *
+     * @param string $id
+     * @return JsonResponse
+     */
+    public static function recovery(string $id): JsonResponse;
 }

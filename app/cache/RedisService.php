@@ -38,6 +38,9 @@ class RedisService
         }
     }
 
+    /**
+     * @return ?Client
+     */
     public static function getClient(): ?Client
     {
         if (self::$client === null) {

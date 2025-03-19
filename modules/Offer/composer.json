@@ -1,0 +1,26 @@
+{
+    "name": "nuke/offer",
+    "description": "",
+    "type": "library",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Offer\\Controllers\\": "Controllers/",
+            "Offer\\Dto\\": "Dto/",
+            "Offer\\Enums\\": "Enums/",
+            "Offer\\Interfaces\\": "Interfaces/",
+            "Offer\\Middlewares\\": "Middlewares/",
+            "Offer\\Services\\": "Services/",
+            "Offer\\Models\\": "Models/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nouname822",
+            "email": "Nouname822@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

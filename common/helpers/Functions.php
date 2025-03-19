@@ -26,11 +26,18 @@ class Functions
     {
         $start = microtime(true);
         $callback();
-        dd(microtime(true) - $start);
+        var_dump(microtime(true) - $start);
     }
 
     public static function toSnakeCase(string $text): string
     {
         return strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $text));
+    }
+
+    public static function setting(int $level = 2): array
+    {
+        $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 2);
+        $basePath = dirname($backtrace[0]['file'], $level) . '/';
+        return (array)include_once $basePath . 'settings.php';
     }
 }
